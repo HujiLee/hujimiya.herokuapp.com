@@ -1,9 +1,5 @@
-#!/usr/bin/env node
-var debug = require('debug')('my-application');
-var app = require('./app');
+/***
+ 安装express前用http模块启动
+ 安装express后不使用本文件来启动了
 
-app.set('port', process.env.PORT || 3000);
-
-var server = app.listen(app.get('port'), function() {
-    debug('Express server listening on port ' + server.address().port);
-});
+ */
