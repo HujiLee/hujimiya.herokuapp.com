@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/',function (req,res) {
-    var MONGOURL = process.env.MONGOURL||require("../mongodb-info.json").url;
+    var MONGOURL = process.env.MONGOURL||"local "+require("../mongodb-info.json").url;
     res.send(["TSDM","Download","Area",MONGOURL])
 });
 
