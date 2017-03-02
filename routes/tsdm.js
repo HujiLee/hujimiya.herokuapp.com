@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/3/1 0001.
  */
 var express = require('express');
+var db = require("../models/db");
 var router = express.Router();
 
 router.get('/',function (req,res) {
@@ -15,6 +16,20 @@ router.get('/',function (req,res) {
    res.render("tsdm",{
        title:"Welcome to TSDM 下载区版头编辑系统"
    });
+
+});
+router.get('/ts',function (req,res) {
+    res.redirect("./login");
+});
+router.get("/login",function (req,res) {
+
+    console.log(db);
+    db.testAuth();
+    res.send([]);
+
+
+});
+router.post("/login",function (req,res) {
 
 });
 
