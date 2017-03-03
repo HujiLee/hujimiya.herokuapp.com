@@ -5,7 +5,31 @@
 </head>
 <body>
 <h1><%=title%></h1>
+<%if(!user){%>
+<a href="./login">
+    登陆
+</a>
+<%}else{%>
+<a href="./logout">退出</a>
+<%}%>
 
+<%if(error){%>
+<p style="color: red"><%=error%></p>
+<%}%>
+<%if(success){%>
+<p style="color: blue"><%=success%></p>
+<%}%>
+<div>
+    <%if(user){%>
+    <div>
+        <h1>新番管理</h1>
+
+    </div>
+    <div>
+        <h1>版头管理</h1>
+    </div>
+    <%}%>
+</div>
 </body>
 
 </html>
