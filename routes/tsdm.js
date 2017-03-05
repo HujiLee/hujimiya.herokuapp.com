@@ -63,7 +63,12 @@ router.get("/logout",function (req,res) {
     req.flash("success","登出咯");
     res.redirect("./");
 });
-
+router.get("/season",function (req,res) {
+   var Season = require("../models/season");
+    new Season("201701","#FF0080").save(function (err,result) {
+        res.send([err.stack,result]);
+    });
+});
 
 
 module.exports = router;

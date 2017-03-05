@@ -17,20 +17,26 @@ User.prototype.save = function (callback) {
         if (err) {
             return callback(err);
         }
-        db.collection("users", function (err, col) {
-            if (err) {
-                db.close();
+        db.authenticate(settings.MONGO_DBUSER,settings.MONGO_DBPASS,function (err,result) {
+            if(err){
                 return callback(err);
             }
-            col.insertMany([user], function (err, resultInfo) {
-                db.close();
+            db.collection("users", function (err, col) {
                 if (err) {
+                    db.close();
                     return callback(err);
                 }
-                callback(null, resultInfo.ops[0]);
+                col.insertMany([user], function (err, resultInfo) {
+                    db.close();
+                    if (err) {
+                        return callback(err);
+                    }
+                    callback(null, resultInfo.ops[0]);
+                })
             })
-        })
-    })
+        });
+
+    });
 };
 
 User.get = function (name, callback) {
